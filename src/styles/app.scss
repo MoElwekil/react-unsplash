@@ -1,0 +1,15 @@
+.list-group {
+    display: block;
+    text-align: center;
+
+    .list-group-item {
+        max-width: 300px;
+        display: inline-block;
+        border: 0;
+        vertical-align: top;
+    
+        img {
+            width: 100%;
+        }
+    }
+}

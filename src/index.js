@@ -1,16 +1,20 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import Unsplash from './api/unsplash'
+import unsplash from './api/unsplash';
 
 // import search form 
 import SearchForm from './component/searchForm'
+// import images list
+import ImagesList from './component/imagesList'
 
 // BOOTSTRAP
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import unsplash from './api/unsplash';
+
+// custom style
+import './styles/app.scss'
 
 class App extends Component {
-    state = {imagesCount: null}
+    state = {imagesCount: null, images: []}
 
     // call back the search term from the search form component
     getSearchTerm = async(term) => {
@@ -18,12 +22,14 @@ class App extends Component {
             params: {query: term}
         })
 
-        console.log(response.data.results.length)
+        this.setState({images: response.data.results, imagesCount: response.data.results.length})
+        console.log(response);
     }
     render(){
         return(
             <div>
                 <SearchForm onSubmit={this.getSearchTerm} />
+                <ImagesList imageCount={this.state.imagesCount} imageList={this.state.images}/>
             </div>
         )
     }
