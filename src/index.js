@@ -1,17 +1,24 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import Unsplash from './api/unsplash'
 
 // import search form 
 import SearchForm from './component/searchForm'
 
 // BOOTSTRAP
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import unsplash from './api/unsplash';
 
 class App extends Component {
-    // call back the search term from the search form component
+    state = {imagesCount: null}
 
-    getSearchTerm(term){
-        
+    // call back the search term from the search form component
+    getSearchTerm = async(term) => {
+        const response = await unsplash.get('/search/photos',{
+            params: {query: term}
+        })
+
+        console.log(response.data.results.length)
     }
     render(){
         return(
