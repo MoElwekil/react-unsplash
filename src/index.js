@@ -8,10 +8,15 @@ import SearchForm from './component/searchForm'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
+    // call back the search term from the search form component
+
+    getSearchTerm(term){
+        
+    }
     render(){
         return(
             <div>
-                <SearchForm />
+                <SearchForm onSubmit={this.getSearchTerm} />
             </div>
         )
     }

@@ -2,6 +2,13 @@
 import React, {Component} from 'react'
 
 class SearchForm extends Component {
+    state = {searchTerm: ''}
+
+    onFormSubmit = (e) => {
+        e.preventDefault();
+        this.props.onSubmit(this.state.searchTerm)
+    }
+
     render(){
         return(
             <div className="col-12">
@@ -9,10 +16,11 @@ class SearchForm extends Component {
                     <h1>Unsplash API</h1>
                     <p>You could use the search box below to get some photos from Unsplash.com website</p>
 
-                    <form className="mt-5">
+                    <form className="mt-5" onSubmit={this.onFormSubmit}>
                         <div className="mb-3">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Image Search</label>
-                            <input type="search" className="form-control" id="exampleFormControlInput1" placeholder="Image Category Name" />
+                            <input type="search" className="form-control" id="exampleFormControlInput1" placeholder="Image Category Name" value={this.state.searchTerm} 
+                            onChange={(e) => this.setState({searchTerm: e.target.value}) }/>
                         </div>
 
                         <div className="col-12">
